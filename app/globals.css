@@ -6,6 +6,7 @@
 @theme {
   --font-poppins: "Poppins", sans-serif;
   --font-roboto: "Roboto", sans-serif;
+  --font-inter: "Inter", sans-serif;
 }
 
 @custom-variant dark (&:is(.dark *));
