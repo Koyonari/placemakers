@@ -1,129 +1,230 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+interface Deal {
+  id: number;
+  image: string;
+  title: string;
+  points: number;
+  description: string;
+}
 
 export default function ExploreDeals() {
-  const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState<boolean>(false);
+  const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null);
+  const [showQRCode, setShowQRCode] = useState<boolean>(false);
+
+  // Disable scrolling when modal is open
+  useEffect(() => {
+    if (selectedDeal) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedDeal]);
+
+  // Reset QR code view when modal closes
+  useEffect(() => {
+    if (!selectedDeal) {
+      setShowQRCode(false);
+    }
+  }, [selectedDeal]);
   
-  const deals = [
+  const deals: Deal[] = [
     {
       id: 1,
       image: "deals/deal1.png",
       title: "Ban Joo Tong",
-      points: 500
+      points: 500,
+      description: "$2 Off Any Purchase"
     },
     {
       id: 2,
       image: "deals/deal2.png",
       title: "John's Provision",
-      points: 750
+      points: 750,
+      description: "Free Sample Taste Test"
     },
     {
       id: 3,
       image: "deals/deal1.png",
       title: "Ming TCM",
-      points: 1000
+      points: 1000,
+      description: "$10 Off Any Purchase"
     },
     {
       id: 4,
       image: "deals/deal2.png",
       title: "Health is Wealth",
-      points: 1250
+      points: 1250,
+      description: "$15 Off Any Purchase"
     },
     {
       id: 5,
       image: "deals/deal2.png",
       title: "Health is Wealth",
-      points: 1250
+      points: 1250,
+      description: "$20 Off Any Purchase"
     }
   ];
 
-  if (showAll) {
-    return (
-      <div className="mx-auto w-[88%]">
-        <div className="flex flex-row justify-between items-center mt-4">
+  const handleDealClick = (deal: Deal): void => {
+    setSelectedDeal(deal);
+  };
+
+  const handleCloseDeal = (): void => {
+    setSelectedDeal(null);
+    setShowQRCode(false);
+  };
+
+  const handleRedeem = (): void => {
+    setShowQRCode(true);
+  };
+
+  return (
+    <>
+      {/* Deal Modal Component */}
+      {selectedDeal && (
+        <div className="fixed inset-0 bg-black/40 z-50" onClick={handleCloseDeal}>
+          <div className="absolute bottom-0 left-0 right-0 flex flex-col py-5 bg-white rounded-t-3xl" onClick={(e) => e.stopPropagation()}>
+            <div className="h-0.5 w-20 bg-[#767676] rounded-4xl mb-6 mx-auto" />
+            
+            <div className="mx-auto w-[88%] h-[340px] flex flex-col">
+              {!showQRCode ? (
+                <>
+                  <div className="flex flex-row gap-4 flex-1 items-center">
+                    <img 
+                      src={selectedDeal.image} 
+                      className="w-[164px] h-[240px] object-cover rounded-[24px]"
+                      alt={selectedDeal.title}
+                    />
+                    <div className="flex flex-col items-start justify-center">
+                      <div className="font-inter font-bold text-3xl mb-4">{selectedDeal.description}</div>
+                      <div className="flex flex-col items-start gap-2 font-semibold">
+                        <div className="text-xl font-roboto">{selectedDeal.title}</div>
+                        <div className="text-xl font-roboto flex flex-row items-center gap-2">
+                          <img src="points.png" className="size-5" alt="Points" />
+                          {selectedDeal.points}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <button 
+                    onClick={handleRedeem}
+                    className="w-full bg-[#FF5B49] text-white font-semibold py-3 rounded-2xl mt-4 mb-1"
+                  >
+                    Redeem
+                  </button>
+                </>
+              ) : (
+                <>
+                  <div className="flex flex-col items-center justify-center flex-1">
+                    <div className="bg-white p-3 rounded-2xl border-2 border-gray-200 mb-4">
+                      <img 
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=DEAL-REDEEMED-123456"
+                        alt="QR Code"
+                        className="w-[160px] h-[160px]"
+                      />
+                    </div>
+                    <div className="text-center font-roboto text-gray-600">
+                      <div className="font-semibold text-lg">{selectedDeal.description}</div>
+                      <div className="text-sm mt-1">{selectedDeal.title}</div>
+                    </div>
+                  </div>
+                  <button 
+                    onClick={handleCloseDeal}
+                    className="w-full bg-[#FF5B49] text-white font-semibold py-3 rounded-2xl mt-4 mb-1"
+                  >
+                    Close
+                  </button>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div>
+        <div className="flex flex-row justify-between items-center mx-auto w-[88%] mt-4">
           <div className="font-poppins font-semibold text-xl">Explore Deals</div>
           <div 
             className="font-poppins text-[14px] font-medium text-[#FF5B49] cursor-pointer hover:underline"
-            onClick={() => setShowAll(false)}
+            onClick={() => setShowAll(!showAll)}
           >
-            Show Less
+            {showAll ? 'Show Less' : 'View All'}
           </div>
         </div>
-        <div className="mt-4">
-          <div className="grid grid-cols-2 gap-x-3 gap-y-5">
-            {deals.map((deal) => (
-              <div
-                key={deal.id}
-                className="relative rounded-[24px] overflow-hidden"
-                style={{ width: '164px', height: '240px' }}
-              >
-                <img
-                  src={deal.image}
-                  alt={deal.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute bottom-3 left-3 font-roboto text-white font-semibold flex flex-col gap-1">
-                  <div className="rounded-[60px] bg-[#545454] text-sm py-1 px-3 w-fit">
-                    {deal.title}
-                  </div>
-                  <div className="rounded-[60px] bg-[#545454] gap-2 py-1 px-3 flex flex-row items-center w-fit">
-                    <img
-                      src="points.png"
-                      alt="Points"
-                      className="size-[14px]"
-                    />
-                    <div className="text-sm">{deal.points}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  return (
-    <div>
-      <div className="flex flex-row justify-between items-center mx-auto w-[88%] mt-4">
-        <div className="font-poppins font-semibold text-xl">Explore Deals</div>
-        <div 
-          className="font-poppins text-[14px] font-medium text-[#FF5B49] cursor-pointer hover:underline"
-          onClick={() => setShowAll(true)}
-        >
-          View All
-        </div>
-      </div>
-      <div className="overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mt-4">
-        <div className="flex flex-row gap-3 pl-6">
-          {deals.map((deal) => (
-            <div
-              key={deal.id}
-              className="relative rounded-[24px] overflow-hidden flex-shrink-0"
-              style={{ width: '164px', height: '240px' }}
-            >
-              <img
-                src={deal.image}
-                alt={deal.title}
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute bottom-3 left-3 font-roboto text-white font-semibold flex flex-col gap-1">
-                <div className="rounded-[60px] bg-[#545454] text-sm py-1 px-3 w-fit">
-                  {deal.title}
-                </div>
-                <div className="rounded-[60px] bg-[#545454] gap-2 py-1 px-3 flex flex-row items-center w-fit">
+        
+        {showAll ? (
+          <div className="mx-auto w-[88%] mt-4">
+            <div className="grid grid-cols-2 gap-5">
+              {deals.map((deal) => (
+                <div
+                  key={deal.id}
+                  className="relative rounded-[24px] overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+                  style={{ width: '164px', height: '240px' }}
+                  onClick={() => handleDealClick(deal)}
+                >
                   <img
-                    src="points.png"
-                    alt="Points"
-                    className="size-[14px]"
+                    src={deal.image}
+                    alt={deal.title}
+                    className="w-full h-full object-cover"
                   />
-                  <div className="text-sm">{deal.points}</div>
+                  <div className="absolute bottom-3 left-3 font-roboto text-white font-semibold flex flex-col gap-1">
+                    <div className="rounded-[60px] bg-[#545454] text-sm py-1 px-3 w-fit">
+                      {deal.title}
+                    </div>
+                    <div className="rounded-[60px] bg-[#545454] gap-2 py-1 px-3 flex flex-row items-center w-fit">
+                      <img
+                        src="points.png"
+                        alt="Points"
+                        className="size-[14px]"
+                      />
+                      <div className="text-sm">{deal.points}</div>
+                    </div>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
-          ))}
-          <div className="flex-shrink-0 w-[5px]"></div>
-        </div>
+          </div>
+        ) : (
+          <div className="overflow-x-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] mt-4">
+            <div className="flex flex-row gap-3 pl-6">
+              {deals.map((deal) => (
+                <div
+                  key={deal.id}
+                  className="relative rounded-[24px] overflow-hidden flex-shrink-0 cursor-pointer hover:opacity-90 transition-opacity"
+                  style={{ width: '164px', height: '240px' }}
+                  onClick={() => handleDealClick(deal)}
+                >
+                  <img
+                    src={deal.image}
+                    alt={deal.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute bottom-3 left-3 font-roboto text-white font-semibold flex flex-col gap-1">
+                    <div className="rounded-[60px] bg-[#545454] text-sm py-1 px-3 w-fit">
+                      {deal.title}
+                    </div>
+                    <div className="rounded-[60px] bg-[#545454] gap-2 py-1 px-3 flex flex-row items-center w-fit">
+                      <img
+                        src="points.png"
+                        alt="Points"
+                        className="size-[14px]"
+                      />
+                      <div className="text-sm">{deal.points}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <div className="flex-shrink-0 w-[5px]"></div>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 }

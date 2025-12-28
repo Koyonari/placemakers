@@ -13,7 +13,7 @@ export default function AccountHeader() {
         </div>
       </div>
       <div className="flex flex-col gap-2">
-        <div className="items-start font-inter font-semibold text-[25px]">{currentPoints.toLocaleString()} pts</div>
+        <div className="items-start font-roboto font-semibold text-[25px]">{currentPoints} pts</div>
         <div className="rounded-3xl w-full bg-[#F5F5F5] h-7  border border-[#000000]/30">
           <div 
             className="rounded-3xl h-full bg-[#FF5B49]  border-2 border-[#FF5B49] transition-all duration-300" 

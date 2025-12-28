@@ -29,7 +29,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-row rounded-[36px] justify-between py-[12px] px-[18px] shadow-xl bg-white w-[88%] z-50">
+    <div className="fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-row rounded-[36px] justify-between py-[12px] px-[18px] shadow-xl bg-white w-[88%] z-40">
       {navItems.map((item, index) => (
         <button
           key={index}
