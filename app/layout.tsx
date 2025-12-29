@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
+import { PointsProvider } from "@/lib/points-context";
+import { RewardsProvider } from "@/lib/rewards-context";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gradient-to-b from-white to-[#EAEAEA]`}
       >
-        {children}
-        <Navbar />
+        <PointsProvider>
+          <RewardsProvider>
+            {children}
+            <Navbar />
+          </RewardsProvider>
+        </PointsProvider>
       </body>
     </html>
   );
