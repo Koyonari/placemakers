@@ -11,7 +11,11 @@ export default function Home() {
     <div className="min-h-screen flex flex-col bg-gradient-to-b from-white to-[#EAEAEA] pb-24">
       <Header onScanClick={() => setShowScanner(true)} />
       <Searchbar />
-      <Routes />
+      <Routes
+        onScanClick={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       {showScanner && <Scan onClose={() => setShowScanner(false)} />}
     </div>
   );
