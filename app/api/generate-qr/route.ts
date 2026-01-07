@@ -3,13 +3,15 @@ import fs from "fs";
 import path from "path";
 import https from "https";
 
-export async function POST() {
+export async function POST(): Promise<Response> {
   try {
     const timestamp = Date.now();
     const qrValue = `botanict-${timestamp}`;
 
     // Generate QR code URL
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=${encodeURIComponent(qrValue)}`;
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=512x512&data=${encodeURIComponent(
+      qrValue
+    )}`;
 
     // Get the public directory path
     const publicDir = path.join(process.cwd(), "public");
@@ -21,7 +23,7 @@ export async function POST() {
     }
 
     // Download QR code from API and save to file
-    return new Promise((resolve) => {
+    return await new Promise<Response>((resolve) => {
       https.get(qrUrl, (response) => {
         const fileStream = fs.createWriteStream(outputPath);
 
