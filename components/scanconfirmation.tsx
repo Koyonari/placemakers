@@ -32,7 +32,7 @@ export default function ScanConfirmation({
           {/* Success Icon */}
           <div className="w-16 h-16 bg-[#FF5B49] rounded-full flex items-center justify-center animate-pulse">
             <Icon
-              icon="weui:success-filled"
+              icon="mdi:success"
               width="32"
               height="32"
               style={{ color: "#FFFFFF" }}
