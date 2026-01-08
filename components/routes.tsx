@@ -214,71 +214,69 @@ function RouteMap({
 
 export default function Routes({ onScanClick }: HeaderProps) {
   const [showScan, setShowScan] = useState(false);
-  const [shops] = useState<Shop[]>([
+    const [shops] = useState<Shop[]>([
     {
       id: 1,
-      name: "Speciality Route",
-      image: "shops/shrimphub.jpg",
+      name: "Aquarium Route",
+      image: "shops/polyart-aquarium.jpg",
       location: "Clementi Ave 2",
-      points: 10,
+      points: 15,
       blocks: [
-        { id: "1-1", number: "#01-20", address: "Blk 354 Clementi Ave 2" },
-        { id: "1-2", number: "#01-21", address: "Blk 355 Clementi Ave 2" },
-        { id: "1-3", number: "#01-54", address: "Blk 356 Clementi Ave 2" },
+        { id: "1-1", number: "#01-186", address: "328 Clementi Ave 2" }, // LFS Aquarium
+        { id: "1-2", number: "#01-194", address: "Block 328 Clementi Ave 2" }, // Polyart Aquarium
+        { id: "1-3", number: "#01-210", address: "Blk 328 Clementi Ave 2" }, // Clementi Florist & Aquarium (C328)
       ],
     },
     {
       id: 2,
       name: "Grocery Route",
-      image: "shops/shrimphub.jpg",
-      location: "Jurong West St 52",
+      image: "shops/shengsiong.jpg",
+      location: "Clementi Ave 2",
       points: 20,
       blocks: [
-        { id: "2-1", number: "#01-10", address: "Blk 501 Jurong West St 52" },
-        { id: "2-2", number: "#01-15", address: "Blk 502 Jurong West St 52" },
-        { id: "2-3", number: "#01-28", address: "Blk 503 Jurong West St 52" },
-        { id: "2-4", number: "#01-32", address: "Blk 504 Jurong West St 52" },
+        { id: "2-1", number: "#01-141/143", address: "352 Clementi Ave 2" }, // FairPrice
+        { id: "2-2", number: "#01-91/93/95/97/99", address: "352 Clementi Ave 2" }, // Sheng Siong
+        { id: "2-3", number: "01-105", address: "352 Clementi Ave 2" }, // Brown Rice Paradise
       ],
     },
     {
       id: 3,
-      name: "Fashion Route",
-      image: "shops/shrimphub.jpg",
-      location: "Bukit Batok Central",
-      points: 15,
+      name: "Flower Route",
+      image: "shops/dailyflorist.jpg",
+      location: "Clementi Ave 2",
+      points: 18,
       blocks: [
-        { id: "3-1", number: "#01-05", address: "Blk 158 Bukit Batok St 11" },
-        { id: "3-2", number: "#01-12", address: "Blk 159 Bukit Batok St 11" },
-        { id: "3-3", number: "#01-18", address: "Blk 160 Bukit Batok St 11" },
+        { id: "3-1", number: "#01-155A", address: "Block 353 Clementi Ave 2" }, // DailyFlorist.sg
+        { id: "3-2", number: "#01-117", address: "352 Clementi Ave 2" }, // Tian Tian Flower Clementi
+        { id: "3-3", number: "#01-210", address: "Blk 328 Clementi Ave 2" }, // Clementi Florist & Aquarium (C328)
       ],
     },
     {
       id: 4,
-      name: "Mom & Pop Route",
-      image: "shops/shrimphub.jpg",
-      location: "Toa Payoh Lor 8",
-      points: 50,
+      name: "Services Route",
+      image: "shops/senditt.jpg",
+      location: "Clementi Ave 2",
+      points: 15,
       blocks: [
-        { id: "4-1", number: "#01-08", address: "Blk 78 Toa Payoh Lor 8" },
-        { id: "4-2", number: "#01-14", address: "Blk 79 Toa Payoh Lor 8" },
-        { id: "4-3", number: "#01-22", address: "Blk 80 Toa Payoh Lor 8" },
-        { id: "4-4", number: "#01-30", address: "Blk 81 Toa Payoh Lor 8" },
-        { id: "4-5", number: "#01-45", address: "Blk 82 Toa Payoh Lor 8" },
+        { id: "4-1", number: "#01-55", address: "353 Clementi Ave 2" }, // Chan Electrical
+        { id: "4-2", number: "#01-237/239", address: "354 Clementi Ave 2" }, // Sun Hee Hardware
+        { id: "4-3", number: "#01-179", address: "Block 354 Clementi Ave 2" }, // Send Itt (bicycle repair)
       ],
     },
     {
       id: 5,
       name: "Foodie Route",
-      image: "shops/shrimphub.jpg",
-      location: "Bedok North St 1",
-      points: 30,
+      image: "shops/yosakoi.jpg",
+      location: "Clementi Ave 2",
+      points: 12,
       blocks: [
-        { id: "5-1", number: "#01-03", address: "Blk 538 Bedok North St 1" },
-        { id: "5-2", number: "#01-11", address: "Blk 539 Bedok North St 1" },
-        { id: "5-3", number: "#01-25", address: "Blk 540 Bedok North St 1" },
+        { id: "5-1", number: "#01-129", address: "Block 352 Clementi Ave 2" }, // Yosakoi Japanese Food Alley
+        { id: "5-2", number: "#01-70", address: "353 Clementi Ave 2" }, // Fried Rice @ The Meeting Place
+        { id: "5-3", number: "#01-153", address: "352 Clementi Ave 2" }, // Hoy Yong Seafood Restaurant
       ],
     },
   ]);
+
 
   const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
   const [userLocation, setUserLocation] = useState<{

@@ -8,54 +8,55 @@ export default function Purchased() {
     {
       id: 1,
       icon: "flat-color-icons:shop",
-      title: "Smart Kettle",
-      location: "Happy Mart @",
-      road: "Clementi Blk 123",
-      unit: "#01-45",
-      date: "Dec 5, 2025",
-      points: 40
+      title: "Aquarium Supplies",
+      location: "LFS Aquarium",
+      road: "328 Clementi Ave 2",
+      unit: "#01-186",
+      date: "Jan 6, 2026",
+      points: 35,
     },
     {
       id: 2,
       icon: "flat-color-icons:shop",
-      title: "Smart Kettle",
-      location: "FairPrice @",
-      road: "Clementi Blk 321",
-      unit: "#02-12",
-      date: "Dec 3, 2025",
-      points: 50
+      title: "Fish Food Bundle",
+      location: "Polyart Aquarium",
+      road: "Block 328 Clementi Ave 2",
+      unit: "#01-194",
+      date: "Jan 5, 2026",
+      points: 40,
     },
     {
       id: 3,
       icon: "flat-color-icons:shop",
-      title: "Smart Kettle",
-      location: "Sheng Siong @",
-      road: "Jurong Blk 456",
-      unit: "#01-23",
-      date: "Dec 1, 2025",
-      points: 35
+      title: "Groceries Pack",
+      location: "Sheng Siong Supermarket",
+      road: "352 Clementi Ave 2",
+      unit: "#01-91/93/95/97/99",
+      date: "Jan 4, 2026",
+      points: 50,
     },
     {
       id: 4,
       icon: "flat-color-icons:shop",
-      title: "Smart Kettle",
-      location: "Giant @",
-      road: "Tampines Blk 789",
-      unit: "#03-56",
-      date: "Nov 28, 2025",
-      points: 42
+      title: "Bouquet Purchase",
+      location: "Tian Tian Flower Clementi",
+      road: "352 Clementi Ave 2",
+      unit: "#01-117",
+      date: "Jan 3, 2026",
+      points: 45,
     },
     {
       id: 5,
       icon: "flat-color-icons:shop",
-      title: "Smart Kettle",
-      location: "Cold Storage @",
-      road: "Orchard Plaza",
-      unit: "#B1-12",
-      date: "Nov 25, 2025",
-      points: 38
-    }
-  ];
+      title: "Bicycle Repair",
+      location: "Send Itt",
+      road: "Block 354 Clementi Ave 2",
+      unit: "#01-179",
+      date: "Jan 2, 2026",
+      points: 30,
+    },
+];
+
 
   const rewards = showAll ? allRewards : allRewards.slice(0, 2);
 

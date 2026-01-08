@@ -32,43 +32,94 @@ export default function ExploreDeals() {
     }
   }, [selectedDeal]);
   
-  const deals: Deal[] = [
+    const deals: Deal[] = [
     {
       id: 1,
-      image: "deals/deal1.png",
-      title: "Ban Joo Tong",
+      image: "deals/Special Deal.png",
+      title: "Sheng Siong Supermarket",
       points: 500,
       description: "$2 Off Any Purchase"
     },
     {
       id: 2,
-      image: "deals/deal2.png",
-      title: "John's Provision",
-      points: 750,
-      description: "Free Sample Taste Test"
+      image: "deals/Rewards.png",
+      title: "FairPrice (Clementi Ave 2)",
+      points: 650,
+      description: "Free Reusable Bag (Min. Spend)"
     },
     {
       id: 3,
-      image: "deals/deal1.png",
-      title: "Ming TCM",
-      points: 1000,
-      description: "$10 Off Any Purchase"
+      image: "deals/Special Deal.png",
+      title: "VN Super Mart",
+      points: 700,
+      description: "$3 Off Snacks & Drinks"
     },
     {
       id: 4,
-      image: "deals/deal2.png",
-      title: "Health is Wealth",
-      points: 1250,
-      description: "$15 Off Any Purchase"
+      image: "deals/Rewards.png",
+      title: "DailyFlorist.sg",
+      points: 900,
+      description: "$5 Off Any Bouquet"
     },
     {
       id: 5,
-      image: "deals/deal2.png",
-      title: "Health is Wealth",
-      points: 1250,
-      description: "$20 Off Any Purchase"
+      image: "deals/Rewards.png",
+      title: "Tian Tian Flower Clementi",
+      points: 950,
+      description: "Free Flower Wrapper Upgrade"
+    },
+    {
+      id: 6,
+      image: "deals/Special Deal.png",
+      title: "Clementi Florist & Aquarium (C328)",
+      points: 1000,
+      description: "$8 Off Any Arrangement"
+    },
+    {
+      id: 7,
+      image: "deals/Rewards.png",
+      title: "LFS Aquarium",
+      points: 1100,
+      description: "10% Off Aquarium Supplies"
+    },
+    {
+      id: 8,
+      image: "deals/Special Deal.png",
+      title: "Polyart Aquarium",
+      points: 1150,
+      description: "$5 Off Fish Food"
+    },
+    {
+      id: 9,
+      image: "deals/Rewards.png",
+      title: "Send Itt",
+      points: 900,
+      description: "$5 Off Bicycle Servicing"
+    },
+    {
+      id: 10,
+      image: "deals/Special Deal.png",
+      title: "Hoy Yong Seafood Restaurant",
+      points: 1200,
+      description: "$10 Off (Min. Spend $30)"
+    },
+    {
+      id: 11,
+      image: "deals/Rewards.png",
+      title: "Yosakoi Japanese Food Alley @ Clementi",
+      points: 850,
+      description: "$3 Off Any Set Meal"
+    },
+    {
+      id: 12,
+      image: "deals/Special Deal.png",
+      title: "Fried Rice @ The Meeting Place",
+      points: 800,
+      description: "Free Drink with Fried Rice"
     }
-  ];
+];
+
+
 
   const handleDealClick = (deal: Deal): void => {
     setSelectedDeal(deal);
