@@ -21,10 +21,10 @@ export default function Display() {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-white p-4">
-      <img 
+      <img
         key={imageKey}
         src={`/qr-code.png?v=${imageKey}`}
-        alt="QR Code" 
+        alt="QR Code"
         className="w-full max-w-md h-auto"
         style={{
           imageRendering: "pixelated",
