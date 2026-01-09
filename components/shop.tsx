@@ -25,7 +25,7 @@ export default function Shop() {
       id: 1,
       name: "Smart Kettle",
       price: 28,
-      image: "items/kettle.jpg",
+      image: "items/electrickettle.jpg",
       location: "Clementi Ave 2, #01-83",
       rating: 4.7,
       description: "Experience the perfect brew every time with this smart electric kettle. Features precise temperature control, auto shut-off for safety, and a sleek matte finish that complements any kitchen. The 1.7L capacity is perfect for family use, while the rapid boil technology saves you time. Includes keep-warm function and BPA-free construction for peace of mind."
@@ -34,7 +34,7 @@ export default function Shop() {
       id: 2,
       name: "Bluetooth Speaker",
       price: 45,
-      image: "items/kettle.jpg",
+      image: "items/bluetooth.jpg",
       location: "Clementi Ave 2, #05-123",
       rating: 4.5,
       description: "Immerse yourself in crystal-clear sound with this portable Bluetooth speaker. Featuring 360-degree audio output, deep bass, and up to 12 hours of playtime on a single charge. Water-resistant design makes it perfect for outdoor adventures. Connect wirelessly to any device and enjoy your favorite music anywhere you go."
@@ -43,7 +43,7 @@ export default function Shop() {
       id: 3,
       name: "Desk Lamp",
       price: 35,
-      image: "items/kettle.jpg",
+      image: "items/desklamp.jpg",
       location: "Clementi Ave 2, #03-45",
       rating: 4.8,
       description: "Modern LED desk lamp with adjustable brightness levels and color temperatures to suit any task. Features a flexible gooseneck design for precise positioning, touch controls, and a USB charging port. Energy-efficient LED technology lasts up to 50,000 hours. Perfect for studying, working, or reading with reduced eye strain."
@@ -52,7 +52,7 @@ export default function Shop() {
       id: 4,
       name: "Coffee Maker",
       price: 68,
-      image: "items/kettle.jpg",
+      image: "items/coffeemaker.jpg",
       location: "Clementi Ave 2, #01-89",
       rating: 4.6,
       description: "Brew barista-quality coffee at home with this programmable coffee maker. Features a built-in grinder, multiple brew strength settings, and a thermal carafe that keeps coffee hot for hours. The 24-hour programmable timer lets you wake up to fresh coffee. Easy to clean with removable parts and auto-clean function."
@@ -61,7 +61,7 @@ export default function Shop() {
       id: 5,
       name: "Wireless Charger",
       price: 32,
-      image: "items/kettle.jpg",
+      image: "items/wirelesscharger.jpg",
       location: "Clementi Ave 3, #02-45",
       rating: 4.7,
       description: "Fast wireless charging pad compatible with all Qi-enabled devices. Features intelligent charging technology that automatically adjusts power output for optimal charging speed. Slim, lightweight design with non-slip surface and LED indicator. Includes overheating and overcharging protection for safe, reliable charging."
@@ -70,7 +70,7 @@ export default function Shop() {
       id: 6,
       name: "Air Purifier",
       price: 85,
-      image: "items/kettle.jpg",
+      image: "items/airpurifier.jpg",
       location: "Clementi Ave 2, #04-67",
       rating: 4.9,
       description: "Breathe cleaner air with this HEPA air purifier that removes 99.97% of airborne particles including dust, pollen, and pet dander. Features three-stage filtration, quiet operation, and covers rooms up to 300 sq ft. Smart sensor automatically adjusts fan speed based on air quality. Perfect for allergies and better sleep."

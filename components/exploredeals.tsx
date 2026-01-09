@@ -35,84 +35,84 @@ export default function ExploreDeals() {
     const deals: Deal[] = [
     {
       id: 1,
-      image: "deals/Special Deal.png",
+      image: "deals/shengsiongdeals.png",
       title: "Sheng Siong",
       points: 500,
       description: "$2 Off Any Purchase"
     },
     {
       id: 2,
-      image: "deals/Rewards.png",
+      image: "deals/fairpricedeals.png",
       title: "FairPrice",
       points: 650,
       description: "Free Reusable Bag (Min. Spend)"
     },
     {
       id: 3,
-      image: "deals/Special Deal.png",
+      image: "deals/vnmartdeals.png",
       title: "VN Super Mart",
       points: 700,
       description: "$3 Off Snacks & Drinks"
     },
     {
       id: 4,
-      image: "deals/Rewards.png",
+      image: "deals/floristdeals.png",
       title: "DailyFlorist",
       points: 900,
       description: "$5 Off Any Bouquet"
     },
     {
       id: 5,
-      image: "deals/Rewards.png",
+      image: "deals/tiantiandeals.png",
       title: "Tian Tian Flower",
       points: 950,
       description: "Free Flower Wrapper Upgrade"
     },
     {
       id: 6,
-      image: "deals/Special Deal.png",
+      image: "deals/clementifloristdeals.png",
       title: "Clementi Florist & Aquarium",
       points: 1000,
       description: "$8 Off Any Arrangement"
     },
     {
       id: 7,
-      image: "deals/Rewards.png",
+      image: "deals/lfsdeals.png",
       title: "LFS Aquarium",
       points: 1100,
       description: "10% Off Aquarium Supplies"
     },
     {
       id: 8,
-      image: "deals/Special Deal.png",
+      image: "deals/Polyartdeals.png",
       title: "Polyart Aquarium",
       points: 1150,
       description: "$5 Off Fish Food"
     },
     {
       id: 9,
-      image: "deals/Rewards.png",
+      image: "deals/sendittdeals.png",
       title: "Send Itt",
       points: 900,
       description: "$5 Off Bicycle Servicing"
     },
     {
       id: 10,
-      image: "deals/Special Deal.png",
+      image: "deals/hoyyongdeals.png",
       title: "Hoy Yong Seafood Restaurant",
       points: 1200,
-      description: "$10 Off (Min. Spend $30)"
+      description: "$5 Off (Min. Spend $30)"
     },
     {
       id: 11,
-      image: "deals/Rewards.png",
+      image: "deals/japanesedeals.png",
       title: "Yosakoi Japanese Food Alley",
       points: 850,
       description: "$3 Off Any Set Meal"
     },
     {
       id: 12,
-      image: "deals/Special Deal.png",
+      image: "deals/themeetingfriedrice.png",
       title: "Fried Rice @ The Meeting Place",
       points: 800,
       description: "Free Drink with Fried Rice"
