@@ -104,9 +104,9 @@ export default function PointsRedeemed() {
                 <div className="font-poppins text-[11px]">{reward.date}</div>
               </div>
             </div>
-            <div className="border border-[#000000]/30 rounded-3xl p-2 flex flex-row items-center gap-1 w-25 h-9">
+            <div className="border border-[#000000]/30 rounded-3xl p-2 flex flex-row items-center gap-1 min-w-21 h-9">
               <img src="points.png" className="size-5 object-cover" />
-              <div className="font-poppins text-[14px]">- {reward.points} pts</div>
+              <div className="font-poppins text-[14px]">- {reward.points}</div>
             </div>
           </div>
         ))}

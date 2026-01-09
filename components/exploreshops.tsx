@@ -410,7 +410,7 @@ export default function ExploreShops() {
     },
     {
       id: 20,
-      name: "Yosakoi Japanese Food Alley @ Clementi",
+      name: "Yosakoi Japanese Food Alley",
       image: "shops/yosakoi.jpg",
       location: "Block 352 Clementi Ave 2, #01-129",
       rating: 4.3,

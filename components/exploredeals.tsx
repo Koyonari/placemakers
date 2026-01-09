@@ -36,14 +36,14 @@ export default function ExploreDeals() {
     {
       id: 1,
       image: "deals/Special Deal.png",
-      title: "Sheng Siong Supermarket",
+      title: "Sheng Siong",
       points: 500,
       description: "$2 Off Any Purchase"
     },
     {
       id: 2,
       image: "deals/Rewards.png",
-      title: "FairPrice (Clementi Ave 2)",
+      title: "FairPrice",
       points: 650,
       description: "Free Reusable Bag (Min. Spend)"
     },
@@ -57,21 +57,21 @@ export default function ExploreDeals() {
     {
       id: 4,
       image: "deals/Rewards.png",
-      title: "DailyFlorist.sg",
+      title: "DailyFlorist",
       points: 900,
       description: "$5 Off Any Bouquet"
     },
     {
       id: 5,
       image: "deals/Rewards.png",
-      title: "Tian Tian Flower Clementi",
+      title: "Tian Tian Flower",
       points: 950,
       description: "Free Flower Wrapper Upgrade"
     },
     {
       id: 6,
       image: "deals/Special Deal.png",
-      title: "Clementi Florist & Aquarium (C328)",
+      title: "Clementi Florist & Aquarium",
       points: 1000,
       description: "$8 Off Any Arrangement"
     },
@@ -106,7 +106,7 @@ export default function ExploreDeals() {
     {
       id: 11,
       image: "deals/Rewards.png",
-      title: "Yosakoi Japanese Food Alley @ Clementi",
+      title: "Yosakoi Japanese Food Alley",
       points: 850,
       description: "$3 Off Any Set Meal"
     },
