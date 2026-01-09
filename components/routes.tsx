@@ -122,11 +122,11 @@ function RouteMap({
         userLocation.lng
       );
       const destinationAddress = `${
-        blocks[blocks.length - 1].address
-      }, Singapore`;
+        blocks[blocks.length - 1].number
+      }, ${blocks[blocks.length - 1].address}, Singapore`;
 
       const waypoints = blocks.slice(0, -1).map((block) => ({
-        location: `${block.address}, Singapore`,
+        location: `${block.number}, ${block.address}, Singapore`,
         stopover: true,
       }));
 
@@ -159,7 +159,7 @@ function RouteMap({
       blocks.forEach((block, index) => {
         const geocoder = new google.maps.Geocoder(); // eslint-disable-next-line @typescript-eslint/no-explicit-any
         geocoder.geocode(
-          { address: `${block.address}, Singapore` },
+          { address: `${block.number}, ${block.address}, Singapore` },
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (results: any, status: any) => {
             if (status === "OK" && results[0]) {
@@ -171,7 +171,7 @@ function RouteMap({
                   color: "white",
                   fontWeight: "bold",
                 },
-                title: block.number,
+                title: `${block.number}, ${block.address}`,
               });
 
               bounds.extend(results[0].geometry.location);
@@ -326,7 +326,7 @@ export default function Routes({ onScanClick }: HeaderProps) {
       : "Current+Location";
     const originParam = `&origin=${origin}`;
 
-    const destinationAddress = `${
+    const destinationAddress = `${blocks[blocks.length - 1].number}, ${
       blocks[blocks.length - 1].address
     }, Singapore`;
     const destinationParam = `&destination=${encodeURIComponent(
@@ -335,7 +335,7 @@ export default function Routes({ onScanClick }: HeaderProps) {
 
     const waypoints = blocks
       .slice(0, -1)
-      .map((block) => `${block.address}, Singapore`)
+      .map((block) => `${block.number}, ${block.address}, Singapore`)
       .join("|");
     const waypointsParam = waypoints
       ? `&waypoints=${encodeURIComponent(waypoints)}`
