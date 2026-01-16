@@ -117,7 +117,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       title: "Scan Reward Earned",
       location: "Hoy Yong Seafood Restaurant",
       road: "352 Clementi Ave 2",
-      unit: "#01",
+      unit: "#01-37",
       date: "Jan 2, 2026",
       points: 10,
     },
@@ -141,8 +141,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       date: "Jan 1, 2026",
       points: 10,
     },
-]);
-
+  ]);
 
   const addReward = useCallback((reward: Reward) => {
     setRewards((prev) => [reward, ...prev]);

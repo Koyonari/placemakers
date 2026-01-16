@@ -25,8 +25,23 @@ export default function Scan({ onClose }: ScanProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [scanned, setScanned] = useState(false);
-  const { addPoints } = usePoints();
+  const [earnedPoints, setEarnedPoints] = useState(15); // Default to gold tier
+  const { addPoints, tier } = usePoints();
   const { addReward } = useRewards();
+
+  // Calculate points based on tier
+  const getPointsForTier = (tierType: string): number => {
+    switch (tierType) {
+      case "silver":
+        return 10;
+      case "gold":
+        return 15;
+      case "diamond":
+        return 20;
+      default:
+        return 10;
+    }
+  };
 
   // Load jsQR library
   useEffect(() => {
@@ -107,6 +122,9 @@ export default function Scan({ onClose }: ScanProps) {
     if (scanned) return;
     setScanned(true);
 
+    const points = getPointsForTier(tier);
+    setEarnedPoints(points);
+
     const today = new Date();
     const dateString = today.toLocaleDateString("en-US", {
       year: "numeric",
@@ -122,17 +140,17 @@ export default function Scan({ onClose }: ScanProps) {
       road: "Clementi Blk 352",
       unit: "#01-123",
       date: dateString,
-      points: 10,
+      points: points,
     };
 
     addReward(newReward);
-    addPoints(10);
+    addPoints(points);
     setShowConfirmation(true);
 
     setTimeout(() => {
       handleClose();
     }, 3500);
-  }, [scanned, addReward, addPoints, handleClose]);
+  }, [scanned, addReward, addPoints, handleClose, tier]);
 
   useEffect(() => {
     if (
@@ -258,7 +276,7 @@ export default function Scan({ onClose }: ScanProps) {
       <ScanConfirmation
         isOpen={showConfirmation}
         onClose={() => setShowConfirmation(false)}
-        points={10}
+        points={earnedPoints}
       />
     </>
   );

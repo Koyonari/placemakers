@@ -1,16 +1,23 @@
 import { useState, useEffect } from 'react';
 
+interface Shop {
+  name: string;
+  image: string;
+}
+
 interface Deal {
   id: number;
   image: string;
   title: string;
   points: number;
   description: string;
+  shops?: Shop[]; // Optional: for deals with multiple shop options
 }
 
 export default function ExploreDeals() {
   const [showAll, setShowAll] = useState<boolean>(false);
   const [selectedDeal, setSelectedDeal] = useState<Deal | null>(null);
+  const [selectedShop, setSelectedShop] = useState<Shop | null>(null);
   const [showQRCode, setShowQRCode] = useState<boolean>(false);
 
   // Disable scrolling when modal is open
@@ -25,14 +32,15 @@ export default function ExploreDeals() {
     };
   }, [selectedDeal]);
 
-  // Reset QR code view when modal closes
+  // Reset QR code view and selected shop when modal closes
   useEffect(() => {
     if (!selectedDeal) {
       setShowQRCode(false);
+      setSelectedShop(null);
     }
   }, [selectedDeal]);
   
-    const deals: Deal[] = [
+  const deals: Deal[] = [
     {
       id: 1,
       image: "deals/shengsiongdeals.png",
@@ -57,69 +65,61 @@ export default function ExploreDeals() {
     {
       id: 4,
       image: "deals/floristdeals.png",
-      title: "DailyFlorist",
+      title: "Multiple Florists",
       points: 900,
-      description: "$5 Off Any Bouquet"
+      description: "$5 Off Any Bouquet",
+      shops: [
+        { name: "DailyFlorist", image: "deals/floristdeals.png" },
+        { name: "Tian Tian Flower", image: "deals/tiantiandeals.png" }
+      ]
     },
     {
       id: 5,
-      image: "deals/tiantiandeals.png",
-      title: "Tian Tian Flower",
-      points: 950,
-      description: "Free Flower Wrapper Upgrade"
-    },
-    {
-      id: 6,
       image: "deals/clementifloristdeals.png",
       title: "Clementi Florist & Aquarium",
       points: 1000,
       description: "$8 Off Any Arrangement"
     },
     {
-      id: 7,
+      id: 6,
       image: "deals/lfsdeals.png",
-      title: "LFS Aquarium",
+      title: "Aquarium Stores",
       points: 1100,
-      description: "10% Off Aquarium Supplies"
+      description: "10% Off Aquarium Supplies",
+      shops: [
+        { name: "LFS Aquarium", image: "deals/lfsdeals.png" },
+        { name: "Polyart Aquarium", image: "deals/Polyartdeals.png" }
+      ]
     },
     {
-      id: 8,
-      image: "deals/Polyartdeals.png",
-      title: "Polyart Aquarium",
-      points: 1150,
-      description: "$5 Off Fish Food"
-    },
-    {
-      id: 9,
+      id: 7,
       image: "deals/sendittdeals.png",
       title: "Send Itt",
       points: 900,
       description: "$5 Off Bicycle Servicing"
     },
     {
-      id: 10,
+      id: 8,
       image: "deals/hoyyongdeals.png",
       title: "Hoy Yong Seafood Restaurant",
       points: 1200,
       description: "$5 Off (Min. Spend $30)"
     },
     {
-      id: 11,
+      id: 9,
       image: "deals/japanesedeals.png",
       title: "Yosakoi Japanese Food Alley",
       points: 850,
       description: "$3 Off Any Set Meal"
     },
     {
-      id: 12,
+      id: 10,
       image: "deals/themeetingfriedrice.png",
       title: "Fried Rice @ The Meeting Place",
       points: 800,
       description: "Free Drink with Fried Rice"
     }
-];
-
-
+  ];
 
   const handleDealClick = (deal: Deal): void => {
     setSelectedDeal(deal);
@@ -128,10 +128,127 @@ export default function ExploreDeals() {
   const handleCloseDeal = (): void => {
     setSelectedDeal(null);
     setShowQRCode(false);
+    setSelectedShop(null);
+  };
+
+  const handleShopSelect = (shop: Shop): void => {
+    setSelectedShop(shop);
   };
 
   const handleRedeem = (): void => {
     setShowQRCode(true);
+  };
+
+  const renderModalContent = () => {
+    if (!selectedDeal) return null;
+
+    // If deal has multiple shops and no shop is selected yet
+    if (selectedDeal.shops && !selectedShop && !showQRCode) {
+      return (
+        <>
+          <div className="flex flex-col flex-1">
+            <div className="font-inter font-bold text-2xl mb-4 text-center">
+              {selectedDeal.description}
+            </div>
+            <div className="text-lg font-roboto text-center mb-4 text-gray-600">
+              Select a shop to redeem:
+            </div>
+            <div className="flex flex-col gap-3">
+              {selectedDeal.shops.map((shop, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleShopSelect(shop)}
+                  className="flex flex-row items-center gap-4 p-4 border-2 border-gray-200 rounded-2xl hover:border-[#FF5B49] transition-colors"
+                >
+                  <img 
+                    src={shop.image} 
+                    className="w-20 h-20 object-cover rounded-xl"
+                    alt={shop.name}
+                  />
+                  <div className="flex-1 text-left">
+                    <div className="font-roboto font-semibold text-lg">{shop.name}</div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="flex flex-row items-center justify-center gap-2 font-roboto text-gray-600 mt-4">
+            <img src="points.png" className="size-5" alt="Points" />
+            <span className="font-semibold">{selectedDeal.points} points</span>
+          </div>
+        </>
+      );
+    }
+
+    // Show QR code
+    if (showQRCode) {
+      const shopName = selectedShop?.name || selectedDeal.title;
+      return (
+        <>
+          <div className="flex flex-col items-center justify-center flex-1">
+            <div className="bg-white p-3 rounded-2xl border-2 border-gray-200 mb-4">
+              <img 
+                src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=DEAL-REDEEMED-123456"
+                alt="QR Code"
+                className="w-[160px] h-[160px]"
+              />
+            </div>
+            <div className="text-center font-roboto text-gray-600">
+              <div className="font-semibold text-lg">{selectedDeal.description}</div>
+              <div className="text-sm mt-1">{shopName}</div>
+            </div>
+          </div>
+          <button 
+            onClick={handleCloseDeal}
+            className="w-full bg-[#FF5B49] text-white font-semibold py-3 rounded-2xl mt-4 mb-1"
+          >
+            Close
+          </button>
+        </>
+      );
+    }
+
+    // Show deal details (single shop or after shop selection)
+    const displayImage = selectedShop?.image || selectedDeal.image;
+    const displayTitle = selectedShop?.name || selectedDeal.title;
+
+    return (
+      <>
+        <div className="flex flex-row gap-4 flex-1 items-center">
+          <img 
+            src={displayImage} 
+            className="w-[164px] h-[240px] object-cover rounded-[24px]"
+            alt={displayTitle}
+          />
+          <div className="flex flex-col items-start justify-center">
+            <div className="font-inter font-bold text-3xl mb-4">{selectedDeal.description}</div>
+            <div className="flex flex-col items-start gap-2 font-semibold">
+              <div className="text-xl font-roboto">{displayTitle}</div>
+              <div className="text-xl font-roboto flex flex-row items-center gap-2">
+                <img src="points.png" className="size-5" alt="Points" />
+                {selectedDeal.points}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {selectedDeal.shops && selectedShop && (
+          <button 
+            onClick={() => setSelectedShop(null)}
+            className="w-full bg-gray-200 text-gray-700 font-semibold py-2 rounded-2xl mt-2 text-sm"
+          >
+            Choose Different Shop
+          </button>
+        )}
+        
+        <button 
+          onClick={handleRedeem}
+          className="w-full bg-[#FF5B49] text-white font-semibold py-3 rounded-2xl mt-4 mb-1"
+        >
+          Redeem
+        </button>
+      </>
+    );
   };
 
   return (
@@ -142,57 +259,8 @@ export default function ExploreDeals() {
           <div className="absolute bottom-0 left-0 right-0 flex flex-col py-5 bg-white rounded-t-3xl" onClick={(e) => e.stopPropagation()}>
             <div className="h-0.5 w-20 bg-[#767676] rounded-4xl mb-6 mx-auto" />
             
-            <div className="mx-auto w-[88%] h-[340px] flex flex-col">
-              {!showQRCode ? (
-                <>
-                  <div className="flex flex-row gap-4 flex-1 items-center">
-                    <img 
-                      src={selectedDeal.image} 
-                      className="w-[164px] h-[240px] object-cover rounded-[24px]"
-                      alt={selectedDeal.title}
-                    />
-                    <div className="flex flex-col items-start justify-center">
-                      <div className="font-inter font-bold text-3xl mb-4">{selectedDeal.description}</div>
-                      <div className="flex flex-col items-start gap-2 font-semibold">
-                        <div className="text-xl font-roboto">{selectedDeal.title}</div>
-                        <div className="text-xl font-roboto flex flex-row items-center gap-2">
-                          <img src="points.png" className="size-5" alt="Points" />
-                          {selectedDeal.points}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <button 
-                    onClick={handleRedeem}
-                    className="w-full bg-[#FF5B49] text-white font-semibold py-3 rounded-2xl mt-4 mb-1"
-                  >
-                    Redeem
-                  </button>
-                </>
-              ) : (
-                <>
-                  <div className="flex flex-col items-center justify-center flex-1">
-                    <div className="bg-white p-3 rounded-2xl border-2 border-gray-200 mb-4">
-                      <img 
-                        src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=DEAL-REDEEMED-123456"
-                        alt="QR Code"
-                        className="w-[160px] h-[160px]"
-                      />
-                    </div>
-                    <div className="text-center font-roboto text-gray-600">
-                      <div className="font-semibold text-lg">{selectedDeal.description}</div>
-                      <div className="text-sm mt-1">{selectedDeal.title}</div>
-                    </div>
-                  </div>
-                  <button 
-                    onClick={handleCloseDeal}
-                    className="w-full bg-[#FF5B49] text-white font-semibold py-3 rounded-2xl mt-4 mb-1"
-                  >
-                    Close
-                  </button>
-                </>
-              )}
+            <div className="mx-auto w-[88%] min-h-[340px] flex flex-col">
+              {renderModalContent()}
             </div>
           </div>
         </div>
