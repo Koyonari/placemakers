@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 interface Shop {
   name: string;
@@ -11,6 +11,7 @@ interface Deal {
   title: string;
   points: number;
   description: string;
+  minimumSpend?: string; // Optional: minimum spend required
   shops?: Shop[]; // Optional: for deals with multiple shop options
 }
 
@@ -23,12 +24,12 @@ export default function ExploreDeals() {
   // Disable scrolling when modal is open
   useEffect(() => {
     if (selectedDeal) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [selectedDeal]);
 
@@ -39,28 +40,31 @@ export default function ExploreDeals() {
       setSelectedShop(null);
     }
   }, [selectedDeal]);
-  
+
   const deals: Deal[] = [
     {
       id: 1,
       image: "deals/shengsiongdeals.png",
       title: "Sheng Siong",
       points: 500,
-      description: "$2 Off Any Purchase"
+      description: "$2 Off Any Purchase",
+      minimumSpend: "",
     },
     {
       id: 2,
       image: "deals/fairpricedeals.png",
       title: "FairPrice",
       points: 650,
-      description: "Free Reusable Bag (Min. Spend)"
+      description: "Free Reusable Bag",
+      minimumSpend: "$20",
     },
     {
       id: 3,
       image: "deals/vnmartdeals.png",
       title: "VN Super Mart",
       points: 700,
-      description: "$3 Off Snacks & Drinks"
+      description: "$3 Off Snacks & Drinks",
+      minimumSpend: "",
     },
     {
       id: 4,
@@ -68,17 +72,19 @@ export default function ExploreDeals() {
       title: "Multiple Florists",
       points: 900,
       description: "$5 Off Any Bouquet",
+      minimumSpend: "",
       shops: [
         { name: "DailyFlorist", image: "deals/floristdeals.png" },
-        { name: "Tian Tian Flower", image: "deals/tiantiandeals.png" }
-      ]
+        { name: "Tian Tian Flower", image: "deals/tiantiandeals.png" },
+      ],
     },
     {
       id: 5,
       image: "deals/clementifloristdeals.png",
       title: "Clementi Florist & Aquarium",
       points: 1000,
-      description: "$8 Off Any Arrangement"
+      description: "$8 Off Any Arrangement",
+      minimumSpend: "",
     },
     {
       id: 6,
@@ -86,39 +92,44 @@ export default function ExploreDeals() {
       title: "Aquarium Stores",
       points: 1100,
       description: "10% Off Aquarium Supplies",
+      minimumSpend: "$50",
       shops: [
         { name: "LFS Aquarium", image: "deals/lfsdeals.png" },
-        { name: "Polyart Aquarium", image: "deals/Polyartdeals.png" }
-      ]
+        { name: "Polyart Aquarium", image: "deals/Polyartdeals.png" },
+      ],
     },
     {
       id: 7,
       image: "deals/sendittdeals.png",
       title: "Send Itt",
       points: 900,
-      description: "$5 Off Bicycle Servicing"
+      description: "$5 Off Bicycle Servicing",
+      minimumSpend: "$50",
     },
     {
       id: 8,
       image: "deals/hoyyongdeals.png",
       title: "Hoy Yong Seafood Restaurant",
       points: 1200,
-      description: "$5 Off (Min. Spend $30)"
+      description: "$5 Off",
+      minimumSpend: "$30",
     },
     {
       id: 9,
       image: "deals/japanesedeals.png",
       title: "Yosakoi Japanese Food Alley",
       points: 850,
-      description: "$3 Off Any Set Meal"
+      description: "$3 Off Any Set Meal",
+      minimumSpend: "",
     },
     {
       id: 10,
       image: "deals/themeetingfriedrice.png",
       title: "Fried Rice @ The Meeting Place",
       points: 800,
-      description: "Free Drink with Fried Rice"
-    }
+      description: "Free Drink with Fried Rice",
+      minimumSpend: "",
+    },
   ];
 
   const handleDealClick = (deal: Deal): void => {
@@ -160,13 +171,20 @@ export default function ExploreDeals() {
                   onClick={() => handleShopSelect(shop)}
                   className="flex flex-row items-center gap-4 p-4 border-2 border-gray-200 rounded-2xl hover:border-[#FF5B49] transition-colors"
                 >
-                  <img 
-                    src={shop.image} 
+                  <img
+                    src={shop.image}
                     className="w-20 h-20 object-cover rounded-xl"
                     alt={shop.name}
                   />
                   <div className="flex-1 text-left">
-                    <div className="font-roboto font-semibold text-lg">{shop.name}</div>
+                    <div className="font-roboto font-semibold text-lg">
+                      {shop.name}
+                    </div>
+                    {selectedDeal.minimumSpend && (
+                      <div className="font-roboto text-sm text-gray-500">
+                        Min. Spend: {selectedDeal.minimumSpend}
+                      </div>
+                    )}
                   </div>
                 </button>
               ))}
@@ -187,18 +205,20 @@ export default function ExploreDeals() {
         <>
           <div className="flex flex-col items-center justify-center flex-1">
             <div className="bg-white p-3 rounded-2xl border-2 border-gray-200 mb-4">
-              <img 
+              <img
                 src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=DEAL-REDEEMED-123456"
                 alt="QR Code"
                 className="w-[160px] h-[160px]"
               />
             </div>
             <div className="text-center font-roboto text-gray-600">
-              <div className="font-semibold text-lg">{selectedDeal.description}</div>
+              <div className="font-semibold text-lg">
+                {selectedDeal.description}
+              </div>
               <div className="text-sm mt-1">{shopName}</div>
             </div>
           </div>
-          <button 
+          <button
             onClick={handleCloseDeal}
             className="w-full bg-[#FF5B49] text-white font-semibold py-3 rounded-2xl mt-4 mb-1"
           >
@@ -215,15 +235,22 @@ export default function ExploreDeals() {
     return (
       <>
         <div className="flex flex-row gap-4 flex-1 items-center">
-          <img 
-            src={displayImage} 
+          <img
+            src={displayImage}
             className="w-[164px] h-[240px] object-cover rounded-[24px]"
             alt={displayTitle}
           />
           <div className="flex flex-col items-start justify-center">
-            <div className="font-inter font-bold text-3xl mb-4">{selectedDeal.description}</div>
+            <div className="font-inter font-bold text-3xl mb-4">
+              {selectedDeal.description}
+            </div>
             <div className="flex flex-col items-start gap-2 font-semibold">
               <div className="text-xl font-roboto">{displayTitle}</div>
+              {selectedDeal.minimumSpend && (
+                <div className="text-sm font-roboto text-gray-600">
+                  Min. Spend: {selectedDeal.minimumSpend}
+                </div>
+              )}
               <div className="text-xl font-roboto flex flex-row items-center gap-2">
                 <img src="points.png" className="size-5" alt="Points" />
                 {selectedDeal.points}
@@ -231,17 +258,17 @@ export default function ExploreDeals() {
             </div>
           </div>
         </div>
-        
+
         {selectedDeal.shops && selectedShop && (
-          <button 
+          <button
             onClick={() => setSelectedShop(null)}
             className="w-full bg-gray-200 text-gray-700 font-semibold py-2 rounded-2xl mt-2 text-sm"
           >
             Choose Different Shop
           </button>
         )}
-        
-        <button 
+
+        <button
           onClick={handleRedeem}
           className="w-full bg-[#FF5B49] text-white font-semibold py-3 rounded-2xl mt-4 mb-1"
         >
@@ -255,10 +282,16 @@ export default function ExploreDeals() {
     <>
       {/* Deal Modal Component */}
       {selectedDeal && (
-        <div className="fixed inset-0 bg-black/40 z-50" onClick={handleCloseDeal}>
-          <div className="absolute bottom-0 left-0 right-0 flex flex-col py-5 bg-white rounded-t-3xl" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="fixed inset-0 bg-black/40 z-50"
+          onClick={handleCloseDeal}
+        >
+          <div
+            className="absolute bottom-0 left-0 right-0 flex flex-col py-5 bg-white rounded-t-3xl"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="h-0.5 w-20 bg-[#767676] rounded-4xl mb-6 mx-auto" />
-            
+
             <div className="mx-auto w-[88%] min-h-[340px] flex flex-col">
               {renderModalContent()}
             </div>
@@ -268,15 +301,17 @@ export default function ExploreDeals() {
 
       <div>
         <div className="flex flex-row justify-between items-center mx-auto w-[88%] mt-4">
-          <div className="font-poppins font-semibold text-xl">Explore Deals</div>
-          <div 
+          <div className="font-poppins font-semibold text-xl">
+            Explore Deals
+          </div>
+          <div
             className="font-poppins text-[14px] font-medium text-[#FF5B49] cursor-pointer hover:underline"
             onClick={() => setShowAll(!showAll)}
           >
-            {showAll ? 'Show Less' : 'View All'}
+            {showAll ? "Show Less" : "View All"}
           </div>
         </div>
-        
+
         {showAll ? (
           <div className="mx-auto w-[88%] mt-4">
             <div className="grid grid-cols-2 gap-5">
@@ -284,7 +319,7 @@ export default function ExploreDeals() {
                 <div
                   key={deal.id}
                   className="relative rounded-[24px] overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
-                  style={{ width: '164px', height: '240px' }}
+                  style={{ width: "164px", height: "240px" }}
                   onClick={() => handleDealClick(deal)}
                 >
                   <img
@@ -316,7 +351,7 @@ export default function ExploreDeals() {
                 <div
                   key={deal.id}
                   className="relative rounded-[24px] overflow-hidden flex-shrink-0 cursor-pointer hover:opacity-90 transition-opacity"
-                  style={{ width: '164px', height: '240px' }}
+                  style={{ width: "164px", height: "240px" }}
                   onClick={() => handleDealClick(deal)}
                 >
                   <img
