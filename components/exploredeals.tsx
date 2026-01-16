@@ -52,14 +52,6 @@ export default function ExploreDeals() {
     },
     {
       id: 2,
-      image: "deals/fairpricedeals.png",
-      title: "FairPrice",
-      points: 650,
-      description: "Free Reusable Bag",
-      minimumSpend: "$20",
-    },
-    {
-      id: 3,
       image: "deals/vnmartdeals.png",
       title: "VN Super Mart",
       points: 700,
@@ -67,7 +59,7 @@ export default function ExploreDeals() {
       minimumSpend: "",
     },
     {
-      id: 4,
+      id: 3,
       image: "deals/floristdeals.png",
       title: "Multiple Florists",
       points: 900,
@@ -79,7 +71,7 @@ export default function ExploreDeals() {
       ],
     },
     {
-      id: 5,
+      id: 4,
       image: "deals/clementifloristdeals.png",
       title: "Clementi Florist & Aquarium",
       points: 1000,
@@ -87,7 +79,7 @@ export default function ExploreDeals() {
       minimumSpend: "",
     },
     {
-      id: 6,
+      id: 5,
       image: "deals/lfsdeals.png",
       title: "Aquarium Stores",
       points: 1100,
@@ -99,7 +91,7 @@ export default function ExploreDeals() {
       ],
     },
     {
-      id: 7,
+      id: 6,
       image: "deals/sendittdeals.png",
       title: "Send Itt",
       points: 900,
@@ -107,7 +99,7 @@ export default function ExploreDeals() {
       minimumSpend: "$50",
     },
     {
-      id: 8,
+      id: 7,
       image: "deals/hoyyongdeals.png",
       title: "Hoy Yong Seafood Restaurant",
       points: 1200,
@@ -115,7 +107,7 @@ export default function ExploreDeals() {
       minimumSpend: "$30",
     },
     {
-      id: 9,
+      id: 8,
       image: "deals/japanesedeals.png",
       title: "Yosakoi Japanese Food Alley",
       points: 850,
@@ -123,10 +115,10 @@ export default function ExploreDeals() {
       minimumSpend: "",
     },
     {
-      id: 10,
+      id: 9,
       image: "deals/themeetingfriedrice.png",
       title: "Fried Rice @ The Meeting Place",
-      points: 800,
+      points: 400,
       description: "Free Drink with Fried Rice",
       minimumSpend: "",
     },
