@@ -29,7 +29,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "352 Clementi Ave 2",
       unit: "#01-91/93/95/97/99",
       date: "Jan 6, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 2,
@@ -39,7 +39,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "352 Clementi Ave 2",
       unit: "#01-141 / #01-143",
       date: "Jan 6, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "354 Clementi Ave 2",
       unit: "#01",
       date: "Jan 5, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 4,
@@ -59,7 +59,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "353 Clementi Ave 2",
       unit: "#01-155A",
       date: "Jan 5, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 5,
@@ -69,7 +69,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "352 Clementi Ave 2",
       unit: "#01-117",
       date: "Jan 4, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 6,
@@ -79,7 +79,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "328 Clementi Ave 2",
       unit: "#01-210",
       date: "Jan 4, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 7,
@@ -89,7 +89,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "328 Clementi Ave 2",
       unit: "#01-186",
       date: "Jan 3, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 8,
@@ -99,7 +99,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "328 Clementi Ave 2",
       unit: "#01-194",
       date: "Jan 3, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 9,
@@ -109,7 +109,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "354 Clementi Ave 2",
       unit: "#01-179",
       date: "Jan 2, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 10,
@@ -119,7 +119,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "352 Clementi Ave 2",
       unit: "#01-37",
       date: "Jan 2, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 11,
@@ -129,7 +129,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "352 Clementi Ave 2",
       unit: "#01-129",
       date: "Jan 1, 2026",
-      points: 10,
+      points: 40,
     },
     {
       id: 12,
@@ -139,7 +139,7 @@ export function RewardsProvider({ children }: { children: React.ReactNode }) {
       road: "353 Clementi Ave 2",
       unit: "#01-70",
       date: "Jan 1, 2026",
-      points: 10,
+      points: 40,
     },
   ]);
 

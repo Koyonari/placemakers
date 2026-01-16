@@ -33,11 +33,11 @@ export default function Scan({ onClose }: ScanProps) {
   const getPointsForTier = (tierType: string): number => {
     switch (tierType) {
       case "silver":
-        return 10;
+        return 30;
       case "gold":
-        return 15;
+        return 40;
       case "diamond":
-        return 20;
+        return 50;
       default:
         return 10;
     }
